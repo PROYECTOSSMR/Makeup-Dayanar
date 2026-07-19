@@ -101,11 +101,10 @@
   .core-circle{
     position:absolute; width:62%; height:62%; top:19%; left:19%;
     border-radius:50%;
-    background:linear-gradient(155deg, var(--rose-pale), var(--cream-deep));
-    display:flex; align-items:center; justify-content:center;
+    overflow:hidden;
     box-shadow:0 30px 60px -20px rgba(169,105,91,0.35);
   }
-  .core-circle .script{ font-size:22px; text-align:center; padding:0 20%; color:var(--rose-deep); }
+  .core-circle img{ width:100%; height:100%; object-fit:cover; }
   .hero-art .float-badge{
     position:absolute; background:var(--white); border:1px solid var(--cream-deep);
     border-radius:2px; padding:14px 18px; box-shadow:0 20px 40px -18px rgba(36,30,28,0.25);
@@ -150,7 +149,37 @@
   .proceso-item h3{ font-size:18px; margin-bottom:8px; }
   .proceso-item p{ color:var(--ink-soft); font-size:14.5px; }
 
-  /* ---------- GALERÍA / CITA ---------- */
+  /* ---------- GALERÍA ---------- */
+  .galeria{ background:var(--white); border-top:1px solid var(--cream-deep); border-bottom:1px solid var(--cream-deep); }
+  .galeria-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    grid-auto-rows:280px;
+    gap:14px;
+  }
+  .galeria-item{
+    position:relative;
+    overflow:hidden;
+    border-radius:3px;
+  }
+  .galeria-item img{
+    width:100%; height:100%;
+    object-fit:cover;
+    transition:transform .5s ease;
+  }
+  .galeria-item:hover img{ transform:scale(1.06); }
+  .galeria-item::after{
+    content:attr(data-label);
+    position:absolute; left:0; right:0; bottom:0;
+    padding:16px 18px 14px;
+    font-family:'Jost',sans-serif;
+    font-size:12px; letter-spacing:0.12em; text-transform:uppercase;
+    color:var(--white);
+    background:linear-gradient(to top, rgba(36,30,28,0.65), transparent);
+  }
+  .galeria-item.tall{ grid-row:span 2; }
+
+  /* ---------- CTA BAND ---------- */
   .cta-band{ background:var(--rose-deep); color:var(--white); text-align:center; }
   .cta-band .eyebrow{ color:var(--rose-pale); justify-content:center; }
   .cta-band .eyebrow::before{ background:var(--gold); }
@@ -175,108 +204,17 @@
     letter-spacing:0.02em;
   }
 
-  /* ---------- GALERÍA ---------- */
-  .galeria{ background:var(--white); border-top:1px solid var(--cream-deep); border-bottom:1px solid var(--cream-deep); }
-  .galeria-grid{
-    display:grid;
-    grid-template-columns:repeat(4,1fr);
-    grid-auto-rows:180px;
-    gap:14px;
-  }
-  .galeria-item{
-    position:relative;
-    border-radius:4px;
-    overflow:hidden;
-    background:linear-gradient(155deg, var(--rose-pale), var(--cream-deep));
-    display:flex; align-items:center; justify-content:center;
-  }
-  .galeria-item img{ width:100%; height:100%; object-fit:cover; display:block; }
-  .galeria-item.tall{ grid-row:span 2; }
-  .galeria-placeholder{
-    display:flex; flex-direction:column; align-items:center; justify-content:center;
-    gap:8px; color:var(--rose-deep); text-align:center; padding:12px;
-  }
-  .galeria-placeholder svg{ width:30px; height:30px; opacity:.7; }
-  .galeria-placeholder span{ font-size:11px; letter-spacing:.06em; text-transform:uppercase; color:var(--ink-soft); }
-
-  /* ---------- TESTIMONIOS ---------- */
-  .testimonios{ background:var(--cream-deep); }
-  .testimonios-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:28px; }
-  .testimonio-card{
-    background:var(--white); border-radius:4px; padding:32px 28px;
-    box-shadow:0 20px 40px -28px rgba(36,30,28,0.25);
-    display:flex; flex-direction:column; gap:16px;
-  }
-  .testimonio-stars{ display:flex; gap:4px; color:var(--gold); }
-  .testimonio-stars svg{ width:16px; height:16px; }
-  .testimonio-text{ color:var(--ink-soft); font-size:15px; font-style:italic; font-family:'Cormorant Garamond', serif; font-size:19px; line-height:1.5; }
-  .testimonio-autor{ display:flex; align-items:center; gap:12px; margin-top:auto; }
-  .testimonio-avatar{
-    width:40px; height:40px; border-radius:50%;
-    background:var(--rose-pale); color:var(--rose-deep);
-    display:flex; align-items:center; justify-content:center;
-    font-family:'Playfair Display',serif; font-weight:700; font-size:15px;
-    flex-shrink:0;
-  }
-  .testimonio-autor strong{ display:block; font-size:14.5px; color:var(--ink); font-weight:500; }
-  .testimonio-autor span{ font-size:12px; color:var(--ink-soft); }
-
-  /* ---------- MENÚ MÓVIL ---------- */
-  .nav-toggle{
-    display:none;
-    width:38px; height:38px;
-    border:none; background:none; cursor:pointer;
-    flex-direction:column; align-items:center; justify-content:center; gap:5px;
-  }
-  .nav-toggle span{ width:22px; height:2px; background:var(--ink); transition:transform .2s ease, opacity .2s ease; }
-  .nav-toggle.open span:nth-child(1){ transform:translateY(7px) rotate(45deg); }
-  .nav-toggle.open span:nth-child(2){ opacity:0; }
-  .nav-toggle.open span:nth-child(3){ transform:translateY(-7px) rotate(-45deg); }
-
-  .mobile-menu{
-    display:none;
-    max-height:0; overflow:hidden;
-    background:var(--cream);
-    border-bottom:1px solid var(--cream-deep);
-    transition:max-height .25s ease;
-  }
-  .mobile-menu.open{ max-height:320px; }
-  .mobile-menu ul{ list-style:none; padding:8px 32px 20px; display:flex; flex-direction:column; gap:4px; }
-  .mobile-menu a{ display:block; padding:12px 0; font-size:15.5px; color:var(--ink-soft); border-bottom:1px solid var(--cream-deep); }
-  .mobile-menu a:hover{ color:var(--rose-deep); }
-  .mobile-menu .btn-cta-mobile{ margin-top:14px; text-align:center; background:var(--rose-deep); color:var(--white); padding:14px; border-radius:2px; }
-
   @media (max-width: 900px){
     nav ul{ display:none; }
-    .nav-cta{ display:none; }
-    .nav-toggle{ display:flex; }
-    .mobile-menu{ display:block; }
     .hero-grid{ grid-template-columns:1fr; }
-    .hero-art{ order:-1; width:100%; max-width:340px; margin:0 auto 20px; }
+    .hero-art{ order:-1; max-width:340px; margin:0 auto 20px; }
     .servicios-grid{ grid-template-columns:repeat(2,1fr); }
     .proceso-list{ grid-template-columns:repeat(2,1fr); }
-    .galeria-grid{ grid-template-columns:repeat(3,1fr); grid-auto-rows:140px; }
-    .testimonios-grid{ grid-template-columns:1fr 1fr; }
+    .galeria-grid{ grid-template-columns:repeat(2,1fr); grid-auto-rows:220px; }
+    .galeria-item.tall{ grid-row:span 1; }
     .contact-links{ gap:26px; flex-direction:column; align-items:center; }
     section{ padding:64px 0; }
     .hero{ padding:52px 0 60px; }
-  }
-
-  @media (max-width: 600px){
-    .wrap{ padding:0 20px; }
-    .hero h1{ font-size:28px; }
-    .hero p.lede{ font-size:15.5px; }
-    .hero-ctas{ flex-direction:column; align-items:flex-start; }
-    .btn-primary{ width:100%; justify-content:center; }
-    .servicios-grid{ grid-template-columns:1fr 1fr; }
-    .servicio-card{ padding:28px 16px; }
-    .proceso-list{ grid-template-columns:1fr; gap:24px; }
-    .galeria-grid{ grid-template-columns:1fr 1fr; grid-auto-rows:120px; }
-    .testimonios-grid{ grid-template-columns:1fr; }
-    .cta-band h2{ font-size:26px; }
-    section{ padding:48px 0; }
-    .hero{ padding:40px 0 44px; }
-    nav.wrap{ height:70px; }
   }
 </style>
 </head>
@@ -293,25 +231,11 @@
     <ul>
       <li><a href="#servicios">Servicios</a></li>
       <li><a href="#galeria">Galería</a></li>
-      <li><a href="#testimonios">Testimonios</a></li>
       <li><a href="#proceso">Cómo trabajo</a></li>
       <li><a href="#contacto">Contacto</a></li>
     </ul>
     <a href="https://wa.me/573044421817" class="btn nav-cta" target="_blank" rel="noopener">Escribir por WhatsApp</a>
-    <button class="nav-toggle" id="navToggle" aria-label="Abrir menú" aria-expanded="false">
-      <span></span><span></span><span></span>
-    </button>
   </nav>
-  <div class="mobile-menu" id="mobileMenu">
-    <ul>
-      <li><a href="#servicios">Servicios</a></li>
-      <li><a href="#galeria">Galería</a></li>
-      <li><a href="#testimonios">Testimonios</a></li>
-      <li><a href="#proceso">Cómo trabajo</a></li>
-      <li><a href="#contacto">Contacto</a></li>
-    </ul>
-    <a href="https://wa.me/573044421817" class="btn-cta-mobile" target="_blank" rel="noopener">Escribir por WhatsApp</a>
-  </div>
 </header>
 
 <main>
@@ -331,7 +255,7 @@
       <div class="hero-art">
         <div class="arc-ring arc-1"></div>
         <div class="arc-ring arc-2"></div>
-        <div class="core-circle"><span class="script">Belleza que te representa</span></div>
+        <div class="core-circle"><img src="images/matrimonio.jpeg" alt="Novia con maquillaje elegante y velo bordado"></div>
         <div class="float-badge badge-1"><strong>Full Glam</strong><span>Look intenso y sofisticado</span></div>
         <div class="float-badge badge-2"><strong>Novias</strong><span>Impecable, todo el día</span></div>
       </div>
@@ -399,100 +323,29 @@
     <div class="wrap">
       <div class="section-head center">
         <p class="eyebrow">Galería</p>
-        <h2>Looks que ya han brillado</h2>
-        <p>Una muestra de trabajos recientes. Cada foto reemplaza fácilmente por las tuyas.</p>
+        <h2>Looks que hemos creado</h2>
+        <p>Una muestra de trabajos reales: novias, quinceañeras y maquillajes sociales.</p>
       </div>
     </div>
     <div class="wrap" style="padding:0;">
       <div class="galeria-grid">
-        <a class="galeria-item tall" href="https://wa.me/573044421817" target="_blank" rel="noopener">
-          <img src="images/foto1Dayana.jpeg" alt="Makeup Dayanar aplicando maquillaje" loading="lazy">
-        </a>
-        <a class="galeria-item" href="https://wa.me/573044421817" target="_blank" rel="noopener">
-          <img src="images/foto2_quincea.jpg" alt="Maquillaje para quinceañera, look con corona" loading="lazy">
-        </a>
-        <a class="galeria-item" href="https://wa.me/573044421817" target="_blank" rel="noopener">
-          <img src="images/foto3_novia.jpg" alt="Maquillaje para novia con velo" loading="lazy">
-        </a>
-        <a class="galeria-item" href="https://wa.me/573044421817" target="_blank" rel="noopener">
-          <img src="images/foto4_sociales.jpg" alt="Maquillaje social con look glam" loading="lazy">
-        </a>
-        <a class="galeria-item" href="https://wa.me/573044421817" target="_blank" rel="noopener">
-          <img src="images/foto5_fullglam.jpg" alt="Look full glam con vestido negro" loading="lazy">
-        </a>
-        <div class="galeria-item">
-          <div class="galeria-placeholder">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="9" cy="9" r="2"/><path d="M21 15l-5-5L5 21"/></svg>
-            <span>Foto 6</span>
-          </div>
+        <div class="galeria-item tall" data-label="Novia">
+          <img src="images/novia.jpg" alt="Maquillaje de novia con velo bordado en flores">
         </div>
-        <div class="galeria-item">
-          <div class="galeria-placeholder">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="9" cy="9" r="2"/><path d="M21 15l-5-5L5 21"/></svg>
-            <span>Foto 7</span>
-          </div>
+        <div class="galeria-item" data-label="Sociales">
+          <img src="images/sociales.jpeg" alt="Maquillaje social con sombra celeste y delineado">
         </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="testimonios" id="testimonios">
-    <div class="wrap">
-      <div class="section-head center">
-        <p class="eyebrow">Testimonios</p>
-        <h2>Lo que dicen mis clientas</h2>
-      </div>
-      <div class="testimonios-grid">
-        <div class="testimonio-card">
-          <div class="testimonio-stars">
-            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.9 6.6 7.1.6-5.4 4.7 1.7 7-6.3-3.8-6.3 3.8 1.7-7L2 9.2l7.1-.6z"/></svg>
-            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.9 6.6 7.1.6-5.4 4.7 1.7 7-6.3-3.8-6.3 3.8 1.7-7L2 9.2l7.1-.6z"/></svg>
-            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.9 6.6 7.1.6-5.4 4.7 1.7 7-6.3-3.8-6.3 3.8 1.7-7L2 9.2l7.1-.6z"/></svg>
-            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.9 6.6 7.1.6-5.4 4.7 1.7 7-6.3-3.8-6.3 3.8 1.7-7L2 9.2l7.1-.6z"/></svg>
-            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.9 6.6 7.1.6-5.4 4.7 1.7 7-6.3-3.8-6.3 3.8 1.7-7L2 9.2l7.1-.6z"/></svg>
-          </div>
-          <p class="testimonio-text">"Me hizo sentir hermosa el día de mis quince. Todos preguntaban quién me había maquillado."</p>
-          <div class="testimonio-autor">
-            <div class="testimonio-avatar">V</div>
-            <div>
-              <strong>Valentina R.</strong>
-              <span>Quinceañera</span>
-            </div>
-          </div>
+        <div class="galeria-item" data-label="Full Glam">
+          <img src="images/fullglam.jpeg" alt="Maquillaje full glam con labios nude y contorno intenso">
         </div>
-        <div class="testimonio-card">
-          <div class="testimonio-stars">
-            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.9 6.6 7.1.6-5.4 4.7 1.7 7-6.3-3.8-6.3 3.8 1.7-7L2 9.2l7.1-.6z"/></svg>
-            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.9 6.6 7.1.6-5.4 4.7 1.7 7-6.3-3.8-6.3 3.8 1.7-7L2 9.2l7.1-.6z"/></svg>
-            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.9 6.6 7.1.6-5.4 4.7 1.7 7-6.3-3.8-6.3 3.8 1.7-7L2 9.2l7.1-.6z"/></svg>
-            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.9 6.6 7.1.6-5.4 4.7 1.7 7-6.3-3.8-6.3 3.8 1.7-7L2 9.2l7.1-.6z"/></svg>
-            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.9 6.6 7.1.6-5.4 4.7 1.7 7-6.3-3.8-6.3 3.8 1.7-7L2 9.2l7.1-.6z"/></svg>
-          </div>
-          <p class="testimonio-text">"El maquillaje duró toda la boda, desde la ceremonia hasta la fiesta. Impecable."</p>
-          <div class="testimonio-autor">
-            <div class="testimonio-avatar">C</div>
-            <div>
-              <strong>Camila G.</strong>
-              <span>Novia</span>
-            </div>
-          </div>
+        <div class="galeria-item" data-label="Elegante">
+          <img src="images/elegante.jpeg" alt="Maquillaje elegante con recogido y velo de novia">
         </div>
-        <div class="testimonio-card">
-          <div class="testimonio-stars">
-            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.9 6.6 7.1.6-5.4 4.7 1.7 7-6.3-3.8-6.3 3.8 1.7-7L2 9.2l7.1-.6z"/></svg>
-            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.9 6.6 7.1.6-5.4 4.7 1.7 7-6.3-3.8-6.3 3.8 1.7-7L2 9.2l7.1-.6z"/></svg>
-            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.9 6.6 7.1.6-5.4 4.7 1.7 7-6.3-3.8-6.3 3.8 1.7-7L2 9.2l7.1-.6z"/></svg>
-            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.9 6.6 7.1.6-5.4 4.7 1.7 7-6.3-3.8-6.3 3.8 1.7-7L2 9.2l7.1-.6z"/></svg>
-            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.9 6.6 7.1.6-5.4 4.7 1.7 7-6.3-3.8-6.3 3.8 1.7-7L2 9.2l7.1-.6z"/></svg>
-          </div>
-          <p class="testimonio-text">"Súper puntual y profesional. El look quedó natural pero se notaba en las fotos."</p>
-          <div class="testimonio-autor">
-            <div class="testimonio-avatar">L</div>
-            <div>
-              <strong>Laura M.</strong>
-              <span>Sesión social</span>
-            </div>
-          </div>
+        <div class="galeria-item tall" data-label="Detrás de cámara">
+          <img src="images/dayana.jpeg" alt="Maquillista aplicando rubor con brochas profesionales">
+        </div>
+        <div class="galeria-item" data-label="Morena">
+          <img src="images/morena.jpeg" alt="Maquillaje glam con cadena de diamantes y labios en tono rosado">
         </div>
       </div>
     </div>
@@ -572,23 +425,5 @@
   Belleza que te representa, confianza que te transforma. ♡
 </footer>
 
-<script>
-  const navToggle = document.getElementById('navToggle');
-  const mobileMenu = document.getElementById('mobileMenu');
-
-  navToggle.addEventListener('click', () => {
-    const isOpen = mobileMenu.classList.toggle('open');
-    navToggle.classList.toggle('open', isOpen);
-    navToggle.setAttribute('aria-expanded', isOpen);
-  });
-
-  mobileMenu.querySelectorAll('a').forEach(link => {
-    link.addEventListener('click', () => {
-      mobileMenu.classList.remove('open');
-      navToggle.classList.remove('open');
-      navToggle.setAttribute('aria-expanded', 'false');
-    });
-  });
-</script>
 </body>
 </html>
